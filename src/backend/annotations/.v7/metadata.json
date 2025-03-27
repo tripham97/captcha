@@ -1,0 +1,247 @@
+{
+  "version": "1.0",
+  "schema_ref": "https://darwin-public.s3.eu-west-1.amazonaws.com/darwin_json/metadata/1.0/schema.json",
+  "classes": [
+    {
+      "name": "Personal item",
+      "type": "bounding_box",
+      "description": null,
+      "color": "rgba(0,102,255,1.0)",
+      "sub_types": [
+        "inference"
+      ],
+      "properties": [],
+      "sub_types_settings": {
+        "inference": {}
+      }
+    }
+  ],
+  "properties": [
+    {
+      "name": "moderation_a2b_alert_category",
+      "type": "single_select",
+      "description": "What is the category of this alert?",
+      "required": true,
+      "property_values": [
+        {
+          "value": "TP_SCAN_ONE_ANOTHER_2BAG",
+          "color": "rgba(143,255,0,1.0)"
+        },
+        {
+          "value": "TP_ITEM_IN_HAND",
+          "color": "rgba(173,255,0,1.0)"
+        },
+        {
+          "value": "FP_MULTI_SCAN",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "FP_SHOPPING_BAG",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "FP_PERSONAL_ITEM",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "FP_ITEM_LOOKUP",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "NOT_SURE",
+          "color": "rgba(5,0,255,1.0)"
+        },
+        {
+          "value": "FP_MANUAL_SCANNER_RETURN ",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "TP_FLOOR_2BAG",
+          "color": "rgba(173,255,0,1.0)"
+        },
+        {
+          "value": "FP_OCCLUSION",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "FP_OTHER",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "TP_CART_2BAG",
+          "color": "rgba(143,255,0,1.0)"
+        },
+        {
+          "value": "TP_OTHER",
+          "color": "rgba(173,255,0,1.0)"
+        },
+        {
+          "value": "TP_ANYWHERE_2BAG",
+          "color": "rgba(143,255,0,1.0)"
+        },
+        {
+          "value": "FP_MANUAL_SCANNER",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "TP_UNLOAD_AREA_2BAG",
+          "color": "rgba(143,255,0,1.0)"
+        },
+        {
+          "value": "TP_BASKET_UNLOAD_AREA_2BAG",
+          "color": "rgba(143,255,0,1.0)"
+        }
+      ],
+      "granularity": "item"
+    },
+    {
+      "name": "analytics_videos_moderation_prediction_evaluation",
+      "type": "single_select",
+      "description": "Was this alert true or false?",
+      "required": false,
+      "property_values": [
+        {
+          "value": "NOT_SURE",
+          "color": "rgba(238,240,241,1.0)"
+        },
+        {
+          "value": "TRUE_POSITIVE",
+          "color": "rgba(143,255,0,1.0)"
+        },
+        {
+          "value": "FALSE_POSITIVE",
+          "color": "rgba(255,46,0,1.0)"
+        }
+      ],
+      "granularity": "item"
+    },
+    {
+      "name": "num_carts_used",
+      "type": "single_select",
+      "description": "How many active carts were used by the active customer?",
+      "required": false,
+      "property_values": [
+        {
+          "value": "3",
+          "color": "rgba(143,0,255,1.0)"
+        },
+        {
+          "value": "0 - None",
+          "color": "rgba(0,133,255,1.0)"
+        },
+        {
+          "value": "5",
+          "color": "rgba(143,0,255,1.0)"
+        },
+        {
+          "value": "4",
+          "color": "rgba(143,0,255,1.0)"
+        },
+        {
+          "value": "2",
+          "color": "rgba(255,153,0,1.0)"
+        },
+        {
+          "value": "1",
+          "color": "rgba(5,0,255,1.0)"
+        }
+      ],
+      "granularity": "item"
+    },
+    {
+      "name": "cart_bottom_used",
+      "type": "single_select",
+      "description": "Was there something at the bottom of any active cart?",
+      "required": false,
+      "property_values": [
+        {
+          "value": "No",
+          "color": "rgba(255,46,0,1.0)"
+        },
+        {
+          "value": "Yes",
+          "color": "rgba(143,255,0,1.0)"
+        }
+      ],
+      "granularity": "item"
+    },
+    {
+      "name": "moderation_misscan_alert_category",
+      "type": "single_select",
+      "description": "What is the category of this alert video?",
+      "required": true,
+      "property_values": [
+        {
+          "value": "FP_MANUAL_SCANNER",
+          "color": "rgba(255,92,0,1.0)"
+        },
+        {
+          "value": "FP_STABILITY",
+          "color": "rgba(255,92,0,1.0)"
+        },
+        {
+          "value": "FP_HAND",
+          "color": "rgba(255,92,0,1.0)"
+        },
+        {
+          "value": "FP_PERSONAL_ITEM",
+          "color": "rgba(255,92,0,1.0)"
+        },
+        {
+          "value": "FP",
+          "color": "rgba(255,92,0,1.0)"
+        },
+        {
+          "value": "TP_SOFT",
+          "color": "rgba(0,236,123,1.0)"
+        },
+        {
+          "value": "TP_HARD_ITEM_ON_SCO_TABLE",
+          "color": "rgba(0,236,123,1.0)"
+        },
+        {
+          "value": "TP_ITEM_NOT_RELEASED",
+          "color": "rgba(0,236,123,1.0)"
+        },
+        {
+          "value": "NOT_SURE",
+          "color": "rgba(238,240,241,1.0)"
+        },
+        {
+          "value": "TP_HARD",
+          "color": "rgba(0,236,123,1.0)"
+        },
+        {
+          "value": "FP_SCANNED",
+          "color": "rgba(255,92,0,1.0)"
+        }
+      ],
+      "granularity": "item"
+    },
+    {
+      "name": "moderation_misscan_additional_attributes",
+      "type": "multi_select",
+      "description": "Select additional attributes",
+      "required": false,
+      "property_values": [
+        {
+          "value": "STRUGGLE_SCANNING",
+          "color": "rgba(255,245,0,1.0)"
+        },
+        {
+          "value": "NOT_SCAN_ATTEMPT",
+          "color": "rgba(255,0,122,1.0)"
+        },
+        {
+          "value": "PRODUCE_ITEM",
+          "color": "rgba(0,133,255,1.0)"
+        },
+        {
+          "value": "TATTOO_EXPOSED",
+          "color": "rgba(219,0,255,1.0)"
+        }
+      ],
+      "granularity": "item"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>reCAPTCHA Challenge</title>
+    <style>
+        img {         
+        width: 150px;
+        margin: 10px;
+        border: 3px solid gray;
+        cursor: pointer;
+        transition: border 0.2s ease; 
+    }
+        img.selected { border: 2px solid limegreen; }
+    </style>
+</head>
+<body>
+    <h2>Select all images with a <strong>{{ label }}</strong></h2>
+    <form method="POST" action="/check">
+        <div id="image-grid">
+            {% for img in images %}
+                <img src="{{ url_for('static', filename=img.filename) }}"
+                     data-id="{{ img.id }}"
+                     onclick="toggleSelect(this)">
+            {% endfor %}
+        </div>
+        <input type="hidden" name="selected" id="selected">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+    function toggleSelect(img) {
+        img.classList.toggle("selected");
+    }
+    
+    document.querySelector("form").onsubmit = function(e) {
+        const selected = Array.from(document.querySelectorAll("img.selected"))
+                              .map(img => img.getAttribute("data-id"));
+        document.getElementById("selected").value = JSON.stringify(selected);
+    };
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("img").forEach(img => {
+                img.onerror = () => {
+                    console.error("Image failed to load:", img.src);
+                    img.style.border = "2px solid red";  // Optional: highlight broken ones
+                };
+            });
+        });
+        </script>
+</body>
+</html>
