@@ -23,10 +23,11 @@
                      onclick="toggleSelect(this)">
             {% endfor %}
         </div>
+
         <input type="hidden" name="selected" id="selected">
         <button type="submit">Submit</button>
     </form>
-    
+
     <script>
     function toggleSelect(img) {
         img.classList.toggle("selected");

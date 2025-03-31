@@ -20,58 +20,57 @@ def get_all_labels():
     return list(labels)
 
 
-@app.route("/")
-def index():
-    all_labels = get_all_labels()
-    target_label = random.choice(all_labels)
+# @app.route("/")
+# def index():
+#     all_labels = get_all_labels()
+#     target_label = random.choice(all_labels)
 
-    all_jsons = [f for f in os.listdir(ANNOTATION_FOLDER) if f.endswith(".json")]
-    random.shuffle(all_jsons)
+#     all_jsons = [f for f in os.listdir(ANNOTATION_FOLDER) if f.endswith(".json")]
+#     random.shuffle(all_jsons)
 
-    selected_images = []
-    print(target_label)
-    for json_file in all_jsons:
-        img_id = os.path.splitext(json_file)[0]
-        img_filename = f"{img_id}.png"
-        img_path = os.path.join(IMAGE_FOLDER, img_filename)
-        annotation_path = os.path.join(ANNOTATION_FOLDER, json_file)
+#     selected_images = []
+#     print(target_label)
+#     for json_file in all_jsons:
+#         img_id = os.path.splitext(json_file)[0]
+#         img_filename = f"{img_id}.png"
+#         img_path = os.path.join(IMAGE_FOLDER, img_filename)
+#         annotation_path = os.path.join(ANNOTATION_FOLDER, json_file)
 
-        if os.path.exists(img_path):
-            selected_images.append({
-                "filename": f"images/{img_filename}",
-                "correct": image_has_label(annotation_path, target_label),
-                "id": img_id
-            })
+#         if os.path.exists(img_path):
+#             selected_images.append({
+#                 "filename": f"images/{img_filename}",
+#                 "correct": image_has_label(annotation_path, target_label),
+#                 "id": img_id
+#             })
 
-        if len(selected_images) >= random.randint(6, 9):
-            break
+#         if len(selected_images) >= random.randint(6, 9):
+#             break
 
-    return render_template("index.html", images=selected_images, label=target_label)
+#     return render_template("index.html", images=selected_images, label=target_label)
 
 
-@app.route("/check", methods=["POST"])
-def check():
-    selected_ids = request.form.get("selected")
-    selected_ids = json.loads(selected_ids)
+# @app.route("/check", methods=["POST"])
+# def check():
+#     selected_ids = request.form.get("selected")
+#     selected_ids = json.loads(selected_ids)
 
-    # Recreate the challenge to get the correct answers
-    all_jsons = [f for f in os.listdir(ANNOTATION_FOLDER) if f.endswith(".json")]
-    correct_ids = []
+#     # Recreate the challenge to get the correct answers
+#     all_jsons = [f for f in os.listdir(ANNOTATION_FOLDER) if f.endswith(".json")]
+#     correct_ids = []
 
-    for json_file in all_jsons:
-        img_id = os.path.splitext(json_file)[0]
-        annotation_path = os.path.join(ANNOTATION_FOLDER, json_file)
-        if image_has_label(annotation_path, TARGET_LABEL):
-            correct_ids.append(img_id)
+#     for json_file in all_jsons:
+#         img_id = os.path.splitext(json_file)[0]
+#         annotation_path = os.path.join(ANNOTATION_FOLDER, json_file)
+#         if image_has_label(annotation_path, TARGET_LABEL):
+#             correct_ids.append(img_id)
 
-    selected_set = set(selected_ids)
-    correct_set = set(correct_ids)
+#     selected_set = set(selected_ids)
+#     correct_set = set(correct_ids)
 
-    # Evaluate
-    passed = selected_set.issubset(correct_set)
-    print(f"Selected: {selected_set}, Correct: {correct_set}")
-    return f"You {'passed ✅' if passed else 'failed ❌'} the CAPTCHA!"
-
+#     # Evaluate
+#     passed = selected_set.issubset(correct_set)
+#     print(f"Selected: {selected_set}, Correct: {correct_set}")
+#     return f"You {'passed ✅' if passed else 'failed ❌'} the CAPTCHA!"
 
 CORS(app)  # Allow requests from localhost:3000 (Next.js)
 
